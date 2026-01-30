@@ -13,16 +13,14 @@
   <div class="mx-auto max-w-2xl px-4 py-10">
     <header class="mb-6">
       <h1 class="text-2xl font-semibold tracking-tight">Điểm danh nhân vật</h1>
-      <p class="mt-1 text-sm text-slate-300">
-        Mỗi ngày điểm danh tối đa 1 lần cho mỗi nhân vật.
-      </p>
+      <p class="mt-1 text-sm text-slate-300">Mỗi ngày chỉ tính 1 lần cho mỗi nhân vật.</p>
     </header>
 
     <main class="card">
       <form id="checkinForm" class="space-y-4">
         <label class="field">
           <span>Tên nhân vật trong game <span class="text-red-400">*</span></span>
-          <input id="characterName" class="input" type="text" placeholder="VD: HieuTran99" maxlength="60" />
+          <input id="characterName" class="input" type="text" placeholder="VD: dmmctcc" maxlength="60" />
           <p id="nameError" class="mt-2 hidden text-sm text-red-300">
             Vui lòng nhập tên nhân vật.
           </p>
@@ -30,13 +28,11 @@
 
         <label class="field">
           <span>Tên Facebook (tuỳ chọn)</span>
-          <input id="facebookName" class="input" type="text" placeholder="VD: Hiếu Trần" maxlength="80" />
+          <input id="facebookName" class="input" type="text" placeholder="VD: Phạm Thứ" maxlength="80" />
         </label>
 
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <button id="btnCheckIn" class="btn btn-primary" type="submit">
-            Điểm danh
-          </button>
+          <button id="btnCheckIn" class="btn btn-primary" type="submit">Điểm danh</button>
 
           <div class="text-xs text-slate-400">
             Hôm nay: <span id="todayLabel" class="text-slate-200"></span>
