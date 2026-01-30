@@ -113,7 +113,7 @@ function main() {
       else toast("Điểm danh thành công!");
     } catch (err) {
       console.error(err);
-      toast("Có lỗi xảy ra. Vui lòng thử lại.");
+      toast(err?.message || "Có lỗi xảy ra. Vui lòng thử lại.");
     } finally {
       setBusy(btn, false);
     }
