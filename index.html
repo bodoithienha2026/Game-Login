@@ -6,13 +6,15 @@
   <title>Điểm danh nhân vật</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style.css?v=9" />
 </head>
 
 <body class="min-h-screen text-slate-100">
-  <!-- Cyber FX -->
+  <!-- nền cyber dày -->
   <div class="bg-art" aria-hidden="true"></div>
   <div class="grid-floor" aria-hidden="true"></div>
+  <div class="particle-field" aria-hidden="true"></div>
+  <div class="streaks" aria-hidden="true"></div>
   <div class="scanlines" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
 
@@ -27,7 +29,12 @@
       <span class="pill">CYBER CHECK-IN</span>
     </header>
 
-    <main class="card">
+    <main class="card hud">
+      <div class="hud-corner tl" aria-hidden="true"></div>
+      <div class="hud-corner tr" aria-hidden="true"></div>
+      <div class="hud-corner bl" aria-hidden="true"></div>
+      <div class="hud-corner br" aria-hidden="true"></div>
+
       <form id="checkinForm" class="space-y-4">
         <div class="grid gap-4 sm:grid-cols-2">
           <label class="field sm:col-span-2">
@@ -49,7 +56,6 @@
           </label>
         </div>
 
-        <!-- Nếu JS bạn có phần gần đây / preview thì nó tự hiện -->
         <section id="recentWrap" class="hidden">
           <div class="text-xs text-slate-400">Gần đây</div>
           <div id="recentList" class="mt-2 flex flex-wrap gap-2"></div>
@@ -84,7 +90,7 @@
     <div id="toastRoot" class="fixed bottom-4 right-4 z-50 flex w-[min(92vw,420px)] flex-col gap-2"></div>
   </div>
 
-  <!-- ✅ POPUP KẾT QUẢ: JS vẫn dùng #resultCard như cũ -->
+  <!-- ✅ CHỈ 1 resultCard: popup modal -->
   <section
     id="resultCard"
     class="hidden modal"
@@ -123,12 +129,9 @@
         </div>
       </div>
 
-      <div class="mt-4 text-xs text-slate-400">
-        (Bấm ra ngoài hoặc nút ✕ để đóng)
-      </div>
+      <div class="mt-4 text-xs text-slate-400">(Bấm ra ngoài hoặc nút ✕ để đóng)</div>
     </div>
 
-    <!-- Confetti chỉ cần CSS, tự bắn khi popup hiện -->
     <div class="confetti" aria-hidden="true">
       <span class="c" style="--x:5;  --d:.02; --t:1.7; --s:10; --h:190;"></span>
       <span class="c" style="--x:11; --d:.10; --t:2.1; --s:8;  --h:280;"></span>
@@ -148,6 +151,6 @@
     </div>
   </section>
 
-  <script type="module" src="./script.js"></script>
+  <script type="module" src="./script.js?v=9"></script>
 </body>
 </html>
