@@ -104,4 +104,53 @@ export async function checkInCharacter(characterName, facebookName) {
 
       const next = {
         ...current,
-        daysCheckedIn: days +
+        daysCheckedIn: days + 1,
+        lastCheckedInDate: today,
+        updatedAt: serverTimestamp(),
+      };
+
+      if (fb) next.facebookName = fb;
+      return next;
+    },
+    { applyLocally: false }
+  );
+
+  const data = result.snapshot.val() || {};
+
+  if (status === "already") {
+    return {
+      status: "already",
+      message: "Hôm nay đã điểm danh rồi.",
+      record: {
+        characterName: data.characterName || character,
+        facebookName: data.facebookName || "",
+        daysCheckedIn: Number(data.daysCheckedIn || 0),
+        lastCheckedInDate: String(data.lastCheckedInDate || today),
+      },
+    };
+  }
+
+  if (status === "created") {
+    return {
+      status: "created",
+      message: "Điểm danh lần đầu thành công!",
+      record: {
+        characterName: data.characterName || character,
+        facebookName: data.facebookName || (fb || ""),
+        daysCheckedIn: Number(data.daysCheckedIn || 1),
+        lastCheckedInDate: String(data.lastCheckedInDate || today),
+      },
+    };
+  }
+
+  return {
+    status: "updated",
+    message: "Điểm danh thành công! Đã cộng thêm 1 ngày.",
+    record: {
+      characterName: data.characterName || character,
+      facebookName: data.facebookName || (fb || ""),
+      daysCheckedIn: Number(data.daysCheckedIn || 0),
+      lastCheckedInDate: String(data.lastCheckedInDate || today),
+    },
+  };
+}
