@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Điểm danh nhân vật</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body class="min-h-screen bg-slate-950 text-slate-100">
+  <div class="mx-auto max-w-2xl px-4 py-10">
+    <header class="mb-6">
+      <h1 class="text-2xl font-semibold tracking-tight">Điểm danh nhân vật</h1>
+      <p class="mt-1 text-sm text-slate-300">
+        Mỗi ngày điểm danh tối đa 1 lần cho mỗi nhân vật.
+      </p>
+    </header>
+
+    <main class="card">
+      <form id="checkinForm" class="space-y-4">
+        <label class="field">
+          <span>Tên nhân vật trong game <span class="text-red-400">*</span></span>
+          <input id="characterName" class="input" type="text" placeholder="VD: HieuTran99" maxlength="60" />
+          <p id="nameError" class="mt-2 hidden text-sm text-red-300">
+            Vui lòng nhập tên nhân vật.
+          </p>
+        </label>
+
+        <label class="field">
+          <span>Tên Facebook (tuỳ chọn)</span>
+          <input id="facebookName" class="input" type="text" placeholder="VD: Hiếu Trần" maxlength="80" />
+        </label>
+
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <button id="btnCheckIn" class="btn btn-primary" type="submit">
+            Điểm danh
+          </button>
+
+          <div class="text-xs text-slate-400">
+            Hôm nay: <span id="todayLabel" class="text-slate-200"></span>
+          </div>
+        </div>
+      </form>
+
+      <section id="resultCard" class="mt-6 hidden rounded-2xl border border-slate-800 bg-slate-900/30 p-4">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="text-sm text-slate-300">Kết quả</div>
+            <div id="resultTitle" class="mt-1 text-base font-semibold"></div>
+            <div id="resultMsg" class="mt-1 text-sm text-slate-300"></div>
+          </div>
+          <span id="resultBadge" class="badge"></span>
+        </div>
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-3">
+          <div class="stat">
+            <div class="stat-label">Số ngày đã điểm danh</div>
+            <div id="statDays" class="stat-value">-</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Ngày gần nhất</div>
+            <div id="statLast" class="stat-value">-</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Facebook</div>
+            <div id="statFb" class="stat-value truncate">-</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toastRoot" class="fixed bottom-4 right-4 z-50 flex w-[min(92vw,420px)] flex-col gap-2"></div>
+  </div>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
