@@ -3,7 +3,7 @@ import {
   getDatabase,
   ref,
   runTransaction,
-  serverTimestamp
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
 const firebaseConfig = {
@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "data-login-d4dda.firebasestorage.app",
   messagingSenderId: "357680638954",
   appId: "1:357680638954:web:d24ee9216b1e3529ab6093",
-  measurementId: "G-V618T28E5N"
+  measurementId: "G-V618T28E5N",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -73,13 +73,14 @@ export async function checkInCharacter(characterName, facebookName) {
   const id = makeId(character);
   const today = todayKey();
 
-  const r = ref(db, `${ROOT}/${id}`);
+  const nodeRef = ref(db, `${ROOT}/${id}`);
 
   let status = "updated"; // created | updated | already
 
-  const result = await runTransaction(
-    r,
+  const txResult = await runTransaction(
+    nodeRef,
     (current) => {
+      // Chưa có dữ liệu: tạo mới
       if (current == null) {
         status = "created";
         return {
@@ -93,12 +94,14 @@ export async function checkInCharacter(characterName, facebookName) {
         };
       }
 
+      // Có rồi: nếu hôm nay đã điểm danh thì giữ nguyên
       const last = String(current.lastCheckedInDate || "");
       if (last === today) {
         status = "already";
         return current;
       }
 
+      // Chưa điểm danh hôm nay: cộng ngày
       status = "updated";
       const days = Number(current.daysCheckedIn || 0);
 
@@ -115,7 +118,7 @@ export async function checkInCharacter(characterName, facebookName) {
     { applyLocally: false }
   );
 
-  const data = result.snapshot.val() || {};
+  const data = txResult.snapshot.val() || {};
 
   if (status === "already") {
     return {
