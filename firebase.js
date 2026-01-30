@@ -3,12 +3,14 @@ import { getFirestore, doc, runTransaction, serverTimestamp } from "https://www.
 
 /* Dán cấu hình của bạn vào đây */
 const firebaseConfig = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_AUTH_DOMAIN",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID",
+  apiKey: "AIzaSyCHVFd3D8kkgQeYsPdn0egIbZyXi0iwna0",
+    authDomain: "data-login-d4dda.firebaseapp.com",
+    databaseURL: "https://data-login-d4dda-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "data-login-d4dda",
+    storageBucket: "data-login-d4dda.firebasestorage.app",
+    messagingSenderId: "357680638954",
+    appId: "1:357680638954:web:d24ee9216b1e3529ab6093",
+    measurementId: "G-V618T28E5N"
 };
 
 const app = initializeApp(firebaseConfig);
